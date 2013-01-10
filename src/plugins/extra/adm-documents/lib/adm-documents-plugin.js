@@ -17,6 +17,9 @@ function(Aloha,jQuery, Plugin,console,module) {
 
 	'use strict';
 	
+	var GENTICS = window.GENTICS,
+	pluginNamespace = 'extra-adm-document';
+	
 	
 	return Plugin.create('adm-documents', {
         
@@ -31,57 +34,33 @@ function(Aloha,jQuery, Plugin,console,module) {
 			},
         
         initSidebar: function ( sidebar ) {
+				
+				var html = '<div class="doc_featuresZZ">';
+						html += '<fieldset id="History">';
+						html += '<legend>Revision History</legend><select name=\"ctl00$MainContent$HistorySelect\" onchange=\"javascript:setTimeout(\"__doPostBack(\'ctl00$MainContent$HistorySelect\',\'\')\', 0)\" id=\"ctl00_MainContent_HistorySelect\">';
+						html += '<option selected="selected" value="1">2 - 12 Oct 12 15:09</option>';
+						html += '<option value="0">1 - 12 Oct 12 15:09</option>';
+						html += '<option value="0">1 - 12 Oct 12 15:09</option>';
+						html += '</select></fieldset>';
+						html += '</fieldset></div>';
+						
+				
 				var pl = this;
 				pl.sidebar = sidebar;
 				sidebar.addPanel( {
 
 					id       : pl.nsClass( 'sidebar-panel-class' ),
 					title    : 'Revision History',
-					content  : '',
+					content  : html,
 					expanded : true,
-					activeOn : this.formatOptions || false,
+					activeOn : true,
 
 					onInit: function () {
+						
 					},
 
 					onActivate: function ( effective ) {
-						var that = this;
-						that.effective = effective;
-					
-						if ( !effective[0] ) {
-							return;
-						}
-						that.format = effective[0].nodeName.toLowerCase();
-
-						var dom = jQuery('<div>').attr('class', pl.nsClass( 'target-container' ));
-						var fieldset = jQuery('<fieldset>');
-						fieldset.append(jQuery('<legend>' + that.format + ' ' + i18n.t( 'format.class.legend' )).append(jQuery('<select>')));
-					
-						dom.append(fieldset);
-					
-						var html = 
-							'<div class="' + pl.nsClass( 'target-container' ) + '"><fieldset><legend>' + i18n.t( 'format.class.legend' ) + '</legend><select name="targetGroup" class="' + pl.nsClass( 'radioTarget' ) + '">' + 
-							'<option value="">' + i18n.t( 'format.class.none' ) + '</option>';
-
-							if ( pl.config[that.format] && pl.config[that.format]['class'] ) {
-								jQuery.each(pl.config[that.format]['class'], function(i ,v) {
-									html += '<option value="' + i + '" >' + v + '</option>';
-								});
-							}
-
-							html += '</select></fieldset></div>';
-
-						var that = this,
-							content = this.setContent(html).content; 
-
-						 jQuery( pl.nsSel( 'framename' ) ).live( 'keyup', function () {
-							jQuery( that.effective ).attr( 'target', jQuery( this ).val().replace( '\"', '&quot;' ).replace( "'", "&#39;" ) );
-						 } );
-					
-
-						var that = this;
-						that.effective = effective;
-						jQuery( pl.nsSel( 'linkTitle' ) ).val( jQuery( that.effective ).attr( 'title' ) );
+						
 					}
 
 				} );
@@ -91,6 +70,7 @@ function(Aloha,jQuery, Plugin,console,module) {
         
         init: function () {
             
+            
             var me = this;
             
             // Executed on plugin initialization
@@ -98,11 +78,8 @@ function(Aloha,jQuery, Plugin,console,module) {
             Aloha.jQuery('.editable').aloha();
     		
     		
-    		
     		Aloha.ready(function () {
-
-			me.initSidebar( Aloha.Sidebar.right );	
-
+				me.initSidebar( Aloha.Sidebar.right );	
 		        /*if (!Aloha.isPluginLoaded('adm-documents')) {
 		            //Aloha.Sidebar.right.addPanel(Panel);
 		            return;
