@@ -42,21 +42,27 @@ function(Aloha,jQuery, Plugin,console,module) {
 						html += '<option value="0">1 - 12 Oct 12 15:09</option>';
 						html += '<option value="0">1 - 12 Oct 12 15:09</option>';
 						html += '</select></fieldset>';
-						html += '</fieldset></div>';
+						html += '</fieldset>';
+						html += '<fieldset id="WarnNotAllTokens" runat="server" Visible="False">';
+						html += 'Not All Tokens Are Shown <a onclick="removeMessages(); addMessage(this.title); showMessages(); this.blur(); return false;" onmouseover="ShowToolTip(this)" class="hand" href="#" title="Tokens which are locked to specific scheme question sets are not shown for this document because it is not assigned to a specific scheme. To see tokens for a specific scheme create a document for that scheme instead. You may still use tokens that are not shown in the list but they will only work when the document is generated for the related scheme and not if used for others"><img src="<%=ENVIRONMENT.MediaLib%>images/interface/icons/16x16/info.gif" alt=""/></a>';
+						html += '</fieldset>';
 						
+						
+						
+						html += '</div>';
 				
 				var pl = this;
 				pl.sidebar = sidebar;
 				sidebar.addPanel( {
 
 					id       : pl.nsClass( 'sidebar-panel-class' ),
-					title    : 'Revision History',
+					title    : 'Options and Preferences',
 					content  : html,
 					expanded : true,
 					activeOn : true,
 
 					onInit: function () {
-						
+										
 					},
 
 					onActivate: function ( effective ) {
@@ -77,9 +83,11 @@ function(Aloha,jQuery, Plugin,console,module) {
             console.log(this.settings.value);
             Aloha.jQuery('.editable').aloha();
     		
-    		
     		Aloha.ready(function () {
+				
 				me.initSidebar( Aloha.Sidebar.right );	
+		    			
+		    	
 		        /*if (!Aloha.isPluginLoaded('adm-documents')) {
 		            //Aloha.Sidebar.right.addPanel(Panel);
 		            return;
