@@ -93,7 +93,7 @@ define([
 		var sidebar = this;
 		this.id = 'aloha-sidebar-' + (++uid);
 		this.panels = {};
-		this.container = $('<div class="aloha-ui aloha-sidebar-bar">' + '<div class="aloha-sidebar-handle">' + '<span class="aloha-sidebar-handle-icon"></span>' + '</div>' + '<div class="aloha-sidebar-inner">' + '<ul class="aloha-sidebar-panels"></ul>' + '</div>' + '</div>');
+		this.container = $('<div class="aloha-ui aloha-sidebar-bar">' + '<div class="aloha-sidebar-handle" title="Click to show more options for your document">' + '<span class="aloha-sidebar-handle-icon"></span>' + '</div>' + '<div class="aloha-sidebar-inner">' + '<ul class="aloha-sidebar-panels"></ul>' + '</div>' + '</div>');
 		this.width = 300;
 		this.opened = false;
 		this.isOpen = false;
@@ -250,6 +250,8 @@ define([
 		 * share that space.
 		 */
 		correctHeight: function () {
+			
+			
 			if (!this.isOpen) {
 				return;
 			}

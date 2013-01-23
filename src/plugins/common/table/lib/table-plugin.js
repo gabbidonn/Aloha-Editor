@@ -123,7 +123,7 @@ define([
 			for (var i = 0; i < c.length; i++) {
 				if (c[i]) {
 					newC.push({
-						name      : c[i].name,
+						name      : c[i].name,	
 						text	  : c[i].text	   ? c[i].text		: c[i].name,
 						tooltip	  : c[i].tooltip   ? c[i].tooltip	: c[i].text,
 						iconClass : c[i].iconClass ? c[i].iconClass	: 'aloha-icon-' + c[i].name,
@@ -223,6 +223,7 @@ define([
 	 * @return void
 	 */
 	TablePlugin.init = function() {
+		
 		var that = this,
 		    isEnabled = {};
 

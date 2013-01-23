@@ -134,7 +134,7 @@ define([
 							   Show all source</label>\
 					</span>\
 				<span style="float:clear"></span>',
-		expanded: true,
+		expanded: false,
 		activeOn: true,
 		content: '<div id="aloha-devtool-source-viewer-content"></div>',
 		onInit: function () {
