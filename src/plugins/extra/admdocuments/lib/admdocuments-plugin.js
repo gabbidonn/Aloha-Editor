@@ -42,7 +42,15 @@ function(Aloha,jQuery, Plugin,console,module,PubSub) {
         
         header : '',
         
+        standardHeader: false,
+        
+        standardFooter: false,
+        
         footer : '',
+        
+        headerAjaxCall : '',
+        
+        footerAjaxCall : '',
         
         sideBarContent: '',
         
@@ -182,9 +190,23 @@ function(Aloha,jQuery, Plugin,console,module,PubSub) {
 					hasHeader: (pl.header !== '' && pl.header != 'undefined'),
 					hasFooter: (pl.footer !== '' && pl.footer != 'undefined'),
 					headerClick : function(chkbox) {
-							
+						
 						//get a snapshot of the content in the editable container.
 						var snapshotContent = Aloha.editables[0].snapshotContent;
+						
+						if(pl.headerAjaxCall)
+						{
+							//this.console.info("adm","Ajax Call Initiated.");
+							jQuery.post(pl.headerAjaxCall,"header=" + chkbox.checked, function(data) {
+								
+								//set the standardHeader 
+								pl.standardHeader = chkbox.checked;
+								
+								
+							})
+							
+						}
+						
 						
 						if(chkbox.checked)
 						{
@@ -221,6 +243,21 @@ function(Aloha,jQuery, Plugin,console,module,PubSub) {
 						
 						//get a snapshot of the content in the editable container.
 						var snapshotContent = Aloha.editables[0].snapshotContent;
+						
+						if(pl.footerAjaxCall)
+						{
+							
+							//console.info("adm","Ajax Call for footer initiated")
+							jQuery.post(pl.headerAjaxCall,"footer=" + chkbox.checked, function(data) {
+								
+								//set the standardfooter
+								pl.standardFooter = chkbox.checked;
+								
+								
+								
+							})
+						}
+						
 						
 						if(chkbox.checked)
 						{
@@ -259,6 +296,7 @@ function(Aloha,jQuery, Plugin,console,module,PubSub) {
 						});
 						
 						
+						//console.info('adm','footerCheckbox');
 						footerCheckbox.click(function() {
 							
 							thispanel.footerClick(this); 
@@ -269,7 +307,7 @@ function(Aloha,jQuery, Plugin,console,module,PubSub) {
 						/*Aloha.ready(function() {
 						*/	
 							
-							if(thispanel.hasHeader) {
+							if(thispanel.hasHeader && pl.standardHeader == true) {
 								
 								headerCheckbox.checked = true;
 								thispanel.headerClick(headerCheckbox);
@@ -278,7 +316,7 @@ function(Aloha,jQuery, Plugin,console,module,PubSub) {
 								
 							//TODO: we have to DRY this - it's doing the same things at the moment. 
 							///		there's more scope here to change both hedaer and footer functionality but at this time the extra code isn't necessary.
-							if(thispanel.hasFooter) {
+							if(thispanel.hasFooter && pl.standardFooter == true) {
 								
 								footerCheckbox.checked = true;
 								thispanel.footerClick(footerCheckbox);
@@ -334,6 +372,26 @@ function(Aloha,jQuery, Plugin,console,module,PubSub) {
 				}
 				if(me.settings.endorsementTypes) {
 					me.endorsementTypes = me.settings.endorsementTypes
+				}
+				
+				if(me.settings.headerAjaxCall)
+				{
+					me.headerAjaxCall = me.settings.headerAjaxCall
+				}
+				
+				if(me.settings.footerAjaxCall)
+				{
+					me.footerAjaxCall = me.settings.footerAjaxCall
+				}
+				
+				if(me.settings.standardHeader)
+				{
+					me.standardHeader = me.settings.standardHeader
+				}
+				
+				if(me.settings.standardFooter)
+				{
+					me.standardFooter = me.settings.standardFooter
 				}
 				
 				

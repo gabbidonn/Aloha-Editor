@@ -63,6 +63,7 @@ define([
 		 * Initialize the plugin and set initialize flag on true
 		 */
 		init: function () {
+			
 			this.createButtons();
 		    this.subscribeEvents();
 		    this.bindInteractions();
@@ -72,7 +73,9 @@ define([
 		 * Initialize the buttons
 		 */
 		createButtons: function () {
-		    var me = this;
+		    
+			
+			var me = this;
 
 			this._formatAbbrButton = Ui.adopt("formatAbbr", ToggleButton, {
 				tooltip: i18n.t("button.abbr.tooltip"),

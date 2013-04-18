@@ -53,6 +53,7 @@ define([
 
 	var GENTICS = window.GENTICS;
 	
+		
 	/**
 	 * Transforms the given list element and its sub elements (if they are in the selection) into
 	 * the given transformTo target.
@@ -114,7 +115,8 @@ define([
 		 * Initialize the plugin, register the buttons
 		 */
 		init: function() {
-
+			
+			
 			var that = this;
 
 			this._orderedListButton = Ui.adopt("orderedList", ToggleButton, {
@@ -873,6 +875,6 @@ define([
 		});
 		return actionPerformed;
 	}
-
+	
 	return ListPlugin;
 });

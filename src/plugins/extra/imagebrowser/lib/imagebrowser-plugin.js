@@ -140,6 +140,7 @@ define([
 		dependencies: [ 'image' ],
 		browser: null,
 		init: function () {
+			
 			var config = {
 				repositoryManager : Aloha.RepositoryManager,
 				repositoryFilter  : [],

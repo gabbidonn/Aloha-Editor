@@ -346,12 +346,12 @@ define([
 
 		init: function () {
 			var that = this;
-
+				
 			if (typeof Aloha.settings.plugins != 'undefined'
 					&& typeof Aloha.settings.plugins.textcolor != 'undefined') {
 				that.settings = Aloha.settings.plugins.textcolor;
 			}
-
+			
 			this._colorPickerButton = Ui.adopt("colorPicker", Button, {
 				tooltip: i18n.t('button.textcolor.tooltip'),
 				icon: "aloha-icon-textcolor",
